@@ -3,43 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account — MahaExam</title>
+    <title>Account Deletion Request — MahaExam</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0F172A; color: #F8FAFC; line-height: 1.6; padding: 30px 15px; margin: 0; }
-        .container { max-width: 600px; margin: 0 auto; background: #1E293B; padding: 30px; border-radius: 14px; border: 1px solid #334155; }
-        h1 { color: #EF4444; font-size: 24px; margin-bottom: 10px; }
-        p { color: #94A3B8; font-size: 14px; margin-bottom: 15px; }
-        label { display: block; font-size: 13px; font-weight: 600; margin: 15px 0 6px; }
-        input, textarea { width: 100%; box-sizing: border-box; background: #0B132B; border: 1px solid #334155; border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; outline: none; }
-        input:focus { border-color: #EF4444; }
-        .btn-del { background: #EF4444; color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; }
-        .btn-del:hover { background: #DC2626; }
-        .info-note { font-size: 12px; color: #64748B; margin-top: 15px; }
+        :root {
+            --bg: #0F172A;
+            --card: #1E293B;
+            --border: #334155;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --red: #EF4444;
+            --red-hover: #DC2626;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 30px 15px; }
+        .container { max-width: 550px; margin: 0 auto; background: var(--card); padding: 30px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        h1 { color: var(--red); font-size: 22px; margin-bottom: 8px; font-weight: 700; }
+        p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
+        .notice-box { background: #0B132B; border-left: 3px solid var(--red); padding: 12px 14px; border-radius: 6px; font-size: 12.5px; color: #CBD5E1; margin-bottom: 20px; }
+        
+        /* Form */
+        label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 6px; color: var(--text); }
+        input, textarea { width: 100%; background: #0B132B; border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; outline: none; }
+        input:focus, textarea:focus { border-color: var(--red); }
+        
+        .btn-submit { background: var(--red); color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.2s; }
+        .btn-submit:hover { background: var(--red-hover); }
+        
+        .footer-note { text-align: center; margin-top: 20px; font-size: 12px; color: #64748B; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #38BDF8; font-size: 13px; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🗑️ Request Account &amp; Data Deletion</h1>
-    <p>In accordance with Google Play data safety regulations, submit your registered mobile number below to permanently erase your profile and test history from our Firebase database.</p>
+    <h1>🗑️ Account &amp; Data Deletion</h1>
+    <p>Submit your registered account details below to permanently remove your profile, practice test scores, and learning progress from our secure cloud servers.</p>
 
-    <!-- फॉर्म थेट contactworld999@gmail.com वर येईल -->
+    <div class="notice-box">
+        ⚠️ <strong>Important Notice:</strong> Once processed, this action is irreversible. All your test attempts, analytics, and active pass access will be permanently wiped.
+    </div>
+
+    <!-- 🔥 थेट FormSubmit द्वारे तुमच्या ईमेलवर मेसेज येईल, कोणताही सर्व्हर उघडा पडणार नाही -->
     <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="[MahaExam] Account Deletion Request">
+        <!-- ईमेलचा विषय -->
+        <input type="hidden" name="_subject" value="[MahaExam] Urgent: Account Deletion Request">
         <input type="hidden" name="_captcha" value="false">
 
-        <label for="phone">Registered Mobile Number / मोबाईल नंबर:</label>
-        <input type="tel" id="phone" name="mobile_number" placeholder="10-digit mobile number" required>
+        <label for="fullName">Candidate Name / पूर्ण नाव:</label>
+        <input type="text" id="fullName" name="candidate_name" placeholder="उदा. Rahul Patil" required>
 
-        <label for="reason">Reason for leaving (Optional):</label>
-        <textarea id="reason" name="reason" rows="3" placeholder="उदा. परीक्षा संपली / इतर कारण..."></textarea>
+        <label for="mobile">Registered Mobile Number / नोंदणीकृत मोबाईल नंबर:</label>
+        <input type="tel" id="mobile" name="registered_mobile" placeholder="उदा. 9876543210" required>
 
-        <button type="submit" class="btn-del">Delete My Account &amp; Data</button>
+        <label for="email">Registered Email (Optional / ईमेल असल्यास):</label>
+        <input type="email" id="email" name="registered_email" placeholder="उदा. rahul@gmail.com">
+
+        <label for="reason">Reason for Account Deletion (Optional):</label>
+        <textarea id="reason" name="reason" rows="2" placeholder="उदा. परीक्षा संपली / ॲपची आता गरज नाही..."></textarea>
+
+        <button type="submit" class="btn-submit">⚠️ Submit Permanent Deletion Request</button>
     </form>
 
-    <div class="info-note">
-        * Once submitted, your profile, test records, and scores will be permanently purged within 48 to 72 business hours.
+    <div class="footer-note">
+        * Requests are verified and securely purged from our servers within 48 to 72 business hours in accordance with Google Play User Data Policies.
     </div>
+
+    <a href="index.html" class="back-link">← Return to MahaExam Official Portal</a>
 </div>
 
 </body>
