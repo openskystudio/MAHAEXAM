@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahaExam — Official Portal & Support</title>
+    <style>
+        :root {
+            --bg: #0F172A;
+            --card: #1E293B;
+            --accent: #2563EB;
+            --gold: #F59E0B;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --border: #334155;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px 15px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0 20px; border-bottom: 1px solid var(--border); }
+        h1 { font-size: 28px; color: #FFFFFF; }
+        .badge { display: inline-block; background: var(--gold); color: #020617; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-top: 5px; }
+        
+        /* Navigation Tabs */
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: 25px 0; flex-wrap: wrap; }
+        .tab-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; }
+        .tab-btn:hover, .tab-btn.active { background: var(--accent); border-color: var(--accent); }
+
+        .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 25px; margin-bottom: 30px; }
+        h2 { font-size: 20px; color: var(--gold); margin-bottom: 15px; }
+        p, li { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+        ul { padding-left: 20px; }
+
+        /* Form Styling */
+        label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; color: var(--text); }
+        input, textarea, select { width: 100%; background: #0B132B; border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; outline: none; }
+        input:focus, textarea:focus { border-color: var(--accent); }
+        .submit-btn { background: var(--gold); color: #020617; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 15px; width: 100%; }
+        .submit-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; color: #64748B; font-size: 12px; padding: 30px 0 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>महा एक्झाम (MahaExam)</h1>
+        <span class="badge">Official Legal &amp; Student Support Portal</span>
+    </header>
+
+    <!-- Menu Links -->
+    <div class="nav-tabs">
+        <a href="#contact" class="tab-btn">✍️ Write to CEO</a>
+        <a href="#privacy" class="tab-btn">🔒 Privacy Policy</a>
+        <a href="#terms" class="tab-btn">📜 Terms &amp; Conditions</a>
+        <a href="#delete" class="tab-btn">🗑️ Delete Account</a>
+    </div>
+
+    <!-- ✍️ SECTION 1: WRITE TO CEO (Delivers to contactworld999@gmail.com) -->
+    <div id="contact" class="section-card">
+        <h2>✍️ Direct Message to Founder / CEO</h2>
+        <p>Do you have any suggestions, test queries, or urgent issues? Your message goes directly to the Founder &amp; CEO inbox at <strong>contactworld999@gmail.com</strong>.</p>
+        
+        <!-- 🔥 FormSubmit Integration: थेट तुमच्या ईमेलवर मेसेज येतो -->
+        <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="[MahaExam] New Message to CEO">
+            <input type="hidden" name="_captcha" value="false">
+
+            <label for="name">Your Name / नाव:</label>
+            <input type="text" id="name" name="student_name" placeholder="उदा. Rahul Jadhav" required>
+
+            <label for="phone">Registered Mobile Number / मोबाईल नंबर:</label>
+            <input type="tel" id="phone" name="student_phone" placeholder="उदा. 9876543210" required>
+
+            <label for="category">Subject / विषय:</label>
+            <select id="category" name="topic">
+                <option value="VIP Pass / Payment">VIP Pass / Payment Issue</option>
+                <option value="Test Feedback">Test / Questions Feedback</option>
+                <option value="Partnership / Suggestion">Suggestions for Improvement</option>
+                <option value="Other">Other Query</option>
+            </select>
+
+            <label for="msg">Message / तुमचा संदेश:</label>
+            <textarea id="msg" name="message" rows="4" placeholder="तुमचा संदेश येथे सविस्तर लिहा..." required></textarea>
+
+            <button type="submit" class="submit-btn">📨 Send to CEO Inbox</button>
+        </form>
+    </div>
+
+    <!-- 🗑️ SECTION 2: DELETE ACCOUNT (Google Play Compliant) -->
+    <div id="delete" class="section-card">
+        <h2>🗑️ Account &amp; Data Deletion Request</h2>
+        <p>In accordance with Google Play User Data policies, users have the right to request deletion of their account and associated data (including test scores and profile info).</p>
+        
+        <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="[MahaExam] Account Deletion Request">
+            <input type="hidden" name="_captcha" value="false">
+
+            <label for="del_phone">Enter Registered Mobile Number to Delete:</label>
+            <input type="tel" id="del_phone" name="phone_to_delete" placeholder="Registered 10-digit mobile number" required>
+
+            <label for="reason">Reason for deletion (Optional):</label>
+            <input type="text" id="reason" name="reason" placeholder="उदा. Exam completed / No longer needed">
+
+            <button type="submit" class="submit-btn" style="background:#EF4444; color:#fff;">⚠️ Request Permanent Deletion</button>
+        </form>
+        <p style="margin-top:12px; font-size:12px;">* Deletion requests are permanently processed within 48 to 72 hours from our Firebase servers.</p>
+    </div>
+
+    <!-- 🔒 SECTION 3: PRIVACY POLICY -->
+    <div id="privacy" class="section-card">
+        <h2>🔒 Privacy Policy for MahaExam</h2>
+        <p>Last Updated: September 2026</p>
+        <p>MahaExam ("we", "our") respects your privacy. This policy details our handling of user data:</p>
+        <ul>
+            <li><strong>Data Collected:</strong> Basic profile name, phone number, and test scores stored securely via Google Firebase.</li>
+            <li><strong>Use of Data:</strong> Data is strictly used to evaluate mock test scores, rank analytics, and activate study material. We never sell student data to third parties.</li>
+            <li><strong>Advertisements:</strong> We use Google AdMob to serve non-personalized and contextual ads in compliance with Google Developer Policies.</li>
+            <li><strong>Contact Grievance:</strong> For privacy concerns, reach our Data Officer at <strong>contactworld999@gmail.com</strong>.</li>
+        </ul>
+    </div>
+
+    <!-- 📜 SECTION 4: TERMS & CONDITIONS -->
+    <div id="terms" class="section-card">
+        <h2>📜 Terms &amp; Conditions</h2>
+        <ul>
+            <li><strong>Educational Purpose:</strong> All practice tests and animated notes are compiled for competitive exam revision and educational purposes only.</li>
+            <li><strong>Non-Government Entity:</strong> MahaExam is a private educational app and does not represent any government department or official commission.</li>
+        </ul>
+    </div>
+
+    <footer>
+        &copy; 2026 MahaExam. All Rights Reserved. | Support: contactworld999@gmail.com
+    </footer>
+</div>
+
+</body>
+</html>
