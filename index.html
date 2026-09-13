@@ -3,44 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MahaExam — Official Portal & Support</title>
+    <title>MahaExam — Support &amp; Executive Desk</title>
     <style>
-        :root {
-            --bg: #0F172A;
-            --card: #1E293B;
-            --accent: #2563EB;
-            --gold: #F59E0B;
-            --green: #10B981;
-            --text: #F8FAFC;
-            --muted: #94A3B8;
-            --border: #334155;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px 15px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; padding: 30px 0 20px; border-bottom: 1px solid var(--border); }
-        h1 { font-size: 28px; color: #FFFFFF; }
-        .badge { display: inline-block; background: var(--gold); color: #020617; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-top: 5px; }
-        
-        /* Navigation Tabs */
-        .nav-tabs { display: flex; justify-content: center; gap: 8px; margin: 25px 0; flex-wrap: wrap; }
-        .tab-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 9px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; text-decoration: none; }
-        .tab-btn:hover, .tab-btn.active { background: var(--accent); border-color: var(--accent); }
-
-        .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 25px; margin-bottom: 25px; }
-        h2 { font-size: 19px; color: var(--gold); margin-bottom: 12px; }
-        p, li { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
-        ul { padding-left: 20px; }
-
-        /* Form Styling */
-        label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 5px; color: var(--text); }
-        input, textarea, select { width: 100%; background: #0B132B; border: 1px solid var(--border); border-radius: 8px; padding: 11px; color: #fff; font-size: 14px; outline: none; }
-        input:focus, textarea:focus { border-color: var(--accent); }
-        .submit-btn { background: var(--gold); color: #020617; border: none; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 15px; width: 100%; }
-        .submit-btn:hover { opacity: 0.9; }
-
-        .info-box { background: #0B132B; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 13px; }
-        footer { text-align: center; color: #64748B; font-size: 12px; padding: 30px 0 10px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0F172A; color: #F8FAFC; line-height: 1.6; padding: 30px 15px; margin: 0; }
+        .container { max-width: 700px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 25px; }
+        h1 { color: #FFFFFF; font-size: 26px; margin-bottom: 5px; }
+        .card { background: #1E293B; border: 1px solid #334155; padding: 25px; border-radius: 14px; margin-bottom: 20px; }
+        h2 { color: #F59E0B; font-size: 18px; margin-bottom: 12px; }
+        p { color: #94A3B8; font-size: 14px; margin-bottom: 15px; }
+        label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
+        input, textarea, select { width: 100%; box-sizing: border-box; background: #0B132B; border: 1px solid #334155; border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; }
+        .btn-submit { background: #F59E0B; color: #020617; border: none; padding: 13px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
+        .btn-submit:hover { opacity: 0.9; }
+        .contact-info { background: #0B132B; padding: 15px; border-radius: 8px; font-size: 13px; color: #CBD5E1; }
+        .links { text-align: center; margin-top: 25px; }
+        .links a { color: #38BDF8; text-decoration: none; margin: 0 10px; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -48,106 +26,54 @@
 <div class="container">
     <header>
         <h1>महा एक्झाम (MahaExam)</h1>
-        <span class="badge">Official Support &amp; Legal Portal</span>
+        <p>Official Student Support &amp; Executive Helpdesk</p>
     </header>
 
-    <!-- Navigation Menu -->
-    <div class="nav-tabs">
-        <a href="#ceo" class="tab-btn">👑 Write to CEO</a>
-        <a href="#contact" class="tab-btn">📞 Contact Us</a>
-        <a href="#privacy" class="tab-btn">🔒 Privacy Policy</a>
-        <a href="#delete" class="tab-btn">🗑️ Delete Account</a>
-    </div>
+    <!-- ✍️ WRITE TO CEO FORM -->
+    <div class="card">
+        <h2>✍️ Direct Message to Founder &amp; CEO</h2>
+        <p>तुमच्या महत्त्वाच्या सूचना, तक्रारी किंवा VIP पासबाबतच्या अडचणी थेट CEO यांच्या इनबॉक्समध्ये (<strong>ceo.mahaexam@gmail.com</strong>) पाठवा:</p>
 
-    <!-- 👑 SECTION 1: WRITE TO CEO (ceo.mahaexam@gmail.com) -->
-    <div id="ceo" class="section-card">
-        <h2>👑 Write to Founder &amp; CEO</h2>
-        <div class="info-box">
-            📩 <strong>Direct Executive Inbox:</strong> ceo.mahaexam@gmail.com<br>
-            Use this form for strategic feedback, critical issues, or direct founder escalations.
-        </div>
-        
+        <!-- फॉर्म थेट ceo.mahaexam@gmail.com वर येईल -->
         <form action="https://formsubmit.co/ceo.mahaexam@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="[MahaExam] Direct Message to CEO">
             <input type="hidden" name="_captcha" value="false">
 
-            <label for="c_name">Your Full Name / नाव:</label>
-            <input type="text" id="c_name" name="name" placeholder="उदा. Rahul Patil" required>
+            <label for="name">Your Name / नाव:</label>
+            <input type="text" id="name" name="name" placeholder="उदा. Rahul Patil" required>
 
-            <label for="c_phone">Registered Mobile Number / मोबाईल:</label>
-            <input type="tel" id="c_phone" name="phone" placeholder="उदा. 9657698362" required>
+            <label for="phone">Mobile Number / मोबाईल नंबर:</label>
+            <input type="tel" id="phone" name="phone" placeholder="उदा. 9657698362" required>
 
-            <label for="c_topic">Purpose / विषय:</label>
-            <select id="c_topic" name="topic">
-                <option value="Urgent Issue">Urgent Account / VIP Issue</option>
-                <option value="Feedback / Suggestion">Suggestions for Improvement</option>
-                <option value="Partnership">Partnership / Content Collaboration</option>
+            <label for="topic">Purpose / विषय:</label>
+            <select id="topic" name="topic">
+                <option value="VIP Pass">VIP Pass / Activation Issue</option>
+                <option value="Feedback">Suggestions / Test Feedback</option>
+                <option value="General">Other Important Query</option>
             </select>
 
-            <label for="c_msg">Your Message to CEO / संदेश:</label>
-            <textarea id="c_msg" name="message" rows="4" placeholder="तुमचा संदेश येथे लिहा..." required></textarea>
+            <label for="msg">Message / तुमचा संदेश:</label>
+            <textarea id="msg" name="message" rows="4" placeholder="तुमचा संदेश येथे सविस्तर लिहा..." required></textarea>
 
-            <button type="submit" class="submit-btn" style="background:#F59E0B;">📨 Send Directly to CEO</button>
+            <button type="submit" class="btn-submit">📨 Send to CEO Inbox</button>
         </form>
     </div>
 
-    <!-- 📞 SECTION 2: CONTACT US & GENERAL SUPPORT (contactworld999@gmail.com) -->
-    <div id="contact" class="section-card">
-        <h2>📞 Contact Us &amp; Student Helpdesk</h2>
-        <div class="info-box">
-            📧 <strong>Official Support:</strong> contactworld999@gmail.com<br>
+    <!-- 📞 SUPPORT CONTACT INFO -->
+    <div class="card">
+        <h2>📞 Student Support Helpdesk</h2>
+        <div class="contact-info">
+            📧 <strong>Support Email:</strong> contactworld999@gmail.com<br>
             📱 <strong>WhatsApp Helpline:</strong> +91 9657698362<br>
             ⏰ <strong>Working Hours:</strong> Mon – Sat: 9:00 AM to 8:00 PM
         </div>
-
-        <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="[MahaExam] Student Support Inquiry">
-            <input type="hidden" name="_captcha" value="false">
-
-            <label for="s_name">Student Name:</label>
-            <input type="text" id="s_name" name="name" placeholder="Your Name" required>
-
-            <label for="s_phone">Mobile Number / Email:</label>
-            <input type="text" id="s_phone" name="contact" placeholder="Phone or Email" required>
-
-            <label for="s_msg">Query Details / शंका किंवा अडचण:</label>
-            <textarea id="s_msg" name="query" rows="3" placeholder="कशाबद्दल मदत हवी आहे?" required></textarea>
-
-            <button type="submit" class="submit-btn" style="background:#2563EB; color:#fff;">📩 Submit Support Ticket</button>
-        </form>
     </div>
 
-    <!-- 🗑️ SECTION 3: DELETE ACCOUNT (Google Play Mandated) -->
-    <div id="delete" class="section-card">
-        <h2>🗑️ Account &amp; Data Deletion Request</h2>
-        <p>Google Play Store धोरणानुसार, युझरला त्याचे खाते व डेटा सर्व्हरवरून कायमचा हटवण्याचा अधिकार आहे.</p>
-        
-        <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="[MahaExam] Account Deletion Request">
-            <input type="hidden" name="_captcha" value="false">
-
-            <label for="del_phone">Registered Mobile Number to Delete:</label>
-            <input type="tel" id="del_phone" name="delete_phone" placeholder="१० अंकी रजिस्टर्ड नंबर" required>
-
-            <button type="submit" class="submit-btn" style="background:#EF4444; color:#fff;">⚠️ Request Permanent Deletion</button>
-        </form>
-        <p style="margin-top:10px; font-size:12px;">* Deletion requests are processed from our Firebase servers within 48-72 hours.</p>
+    <!-- QUICK LINKS -->
+    <div class="links">
+        <a href="privacy.html">🔒 Privacy Policy</a> |
+        <a href="delete-account.html">🗑️ Delete Account</a>
     </div>
-
-    <!-- 🔒 SECTION 4: PRIVACY POLICY -->
-    <div id="privacy" class="section-card">
-        <h2>🔒 Privacy Policy</h2>
-        <p>MahaExam complies with all Google Play Developer Guidelines:</p>
-        <ul>
-            <li><strong>Data Protection:</strong> Phone numbers and test performance stats are encrypted on Firebase servers.</li>
-            <li><strong>Third-Party AdMob:</strong> Standard Google AdMob SDK is utilized for compliant ad-delivery.</li>
-            <li><strong>Grievance Contact:</strong> Reach our compliance desk at <strong>contactworld999@gmail.com</strong> or executive desk at <strong>ceo.mahaexam@gmail.com</strong>.</li>
-        </ul>
-    </div>
-
-    <footer>
-        &copy; 2026 MahaExam Education. All Rights Reserved.
-    </footer>
 </div>
 
 </body>
