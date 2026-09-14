@@ -14,63 +14,193 @@
             --red: #EF4444;
             --red-hover: #DC2626;
         }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-user-select: none; user-select: none; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 30px 15px; }
-        .container { max-width: 550px; margin: 0 auto; background: var(--card); padding: 30px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        h1 { color: var(--red); font-size: 22px; margin-bottom: 8px; font-weight: 700; }
-        p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
-        .notice-box { background: #0B132B; border-left: 3px solid var(--red); padding: 12px 14px; border-radius: 6px; font-size: 12.5px; color: #CBD5E1; margin-bottom: 20px; }
+        .container { max-width: 540px; margin: 0 auto; background: var(--card); padding: 28px; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: var(--red); font-size: 22px; margin-bottom: 6px; font-weight: 800; display: flex; items-center; gap: 8px; }
+        p { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+        .notice-box { background: #0B132B; border-left: 4px solid var(--red); padding: 12px 14px; border-radius: 8px; font-size: 12px; color: #CBD5E1; margin-bottom: 20px; line-height: 1.5; }
         
         /* Form */
-        label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 6px; color: var(--text); }
-        input, textarea { width: 100%; background: #0B132B; border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; outline: none; }
+        label { display: block; font-size: 12.5px; font-weight: 700; margin: 14px 0 6px; color: var(--text); }
+        .req { color: var(--red); }
+        input, textarea { width: 100%; background: #0B132B; border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: #fff; font-size: 13.5px; outline: none; transition: border-color 0.2s; }
         input:focus, textarea:focus { border-color: var(--red); }
+        .err-msg { color: #F87171; font-size: 11.5px; margin-top: 4px; display: none; font-weight: 600; }
         
-        .btn-submit { background: var(--red); color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.2s; }
+        .btn-submit { background: var(--red); color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 22px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-submit:hover { background: var(--red-hover); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
         
-        .footer-note { text-align: center; margin-top: 20px; font-size: 12px; color: #64748B; }
-        .back-link { display: block; text-align: center; margin-top: 15px; color: #38BDF8; font-size: 13px; text-decoration: none; }
+        .footer-note { text-align: center; margin-top: 18px; font-size: 11px; color: #64748B; }
+        .back-link { display: block; text-align: center; margin-top: 16px; color: #38BDF8; font-size: 13px; text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
+
+        /* 🎉 सबमिट झाल्यावर दिसणारे सक्सेस कार्ड */
+        #successCard {
+            display: none;
+            background: #064E3B;
+            border: 1px solid #059669;
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            color: #ECFDF5;
+        }
+        #successCard h2 { font-size: 18px; font-weight: bold; color: #34D399; margin-bottom: 8px; }
+        #successCard p { font-size: 13px; line-height: 1.5; color: #A7F3D0; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>🗑️ Account &amp; Data Deletion</h1>
-    <p>Submit your registered account details below to permanently remove your profile, practice test scores, and learning progress from our secure cloud servers.</p>
+    <p>Submit your verified account details below to permanently remove your profile, scores, and progress from our cloud servers.</p>
 
     <div class="notice-box">
-        ⚠️ <strong>Important Notice:</strong> Once processed, this action is irreversible. All your test attempts, analytics, and active pass access will be permanently wiped.
+        ⚠️ <strong>Important Notice:</strong> Once submitted and verified, this action is permanent and irreversible. All your test attempts, analytics, and active pass access will be wiped.
     </div>
 
-    <!-- 🔥 थेट FormSubmit द्वारे तुमच्या ईमेलवर मेसेज येईल, कोणताही सर्व्हर उघडा पडणार नाही -->
-    <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
-        <!-- ईमेलचा विषय -->
-        <input type="hidden" name="_subject" value="[MahaExam] Urgent: Account Deletion Request">
-        <input type="hidden" name="_captcha" value="false">
+    <!-- ✅ सबमिट झाल्यावर दिसणारा मेसेज (No Redirect) -->
+    <div id="successCard">
+        <h2>✅ विनंती यशस्वीरीत्या सबमिट झाली!</h2>
+        <p>तुमचे खाते व सर्व डेटा हटवण्याची (Permanent Deletion) विनंती नोंदवली गेली आहे. गुगल प्ले नियमांनुसार ४८ ते ७२ तासांत तुमच्या खात्याची खातरजमा करून डेटा नष्ट केला जाईल.</p>
+    </div>
 
-        <label for="fullName">Candidate Name / पूर्ण नाव:</label>
-        <input type="text" id="fullName" name="candidate_name" placeholder="उदा. Rahul Patil" required>
+    <!-- 📝 फॉर्म -->
+    <form id="deleteAccountForm">
+        <!-- १. पूर्ण नाव -->
+        <label for="fullName">Candidate Name / पूर्ण नाव: <span class="req">*</span></label>
+        <input type="text" id="fullName" required placeholder="उदा. Rahul Maruti Patil" minlength="3">
+        <div id="errName" class="err-msg">कृपया तुमचे पूर्ण नाव टाका (किमान ३ अक्षरे).</div>
 
-        <label for="mobile">Registered Mobile Number / नोंदणीकृत मोबाईल नंबर:</label>
-        <input type="tel" id="mobile" name="registered_mobile" placeholder="उदा. 9876543210" required>
+        <!-- २. १० अंकी खरा मोबाईल नंबर -->
+        <label for="mobile">Registered Mobile Number / मोबाईल नंबर: <span class="req">*</span></label>
+        <input type="tel" id="mobile" required placeholder="उदा. 9657698362" maxlength="10">
+        <div id="errMobile" class="err-msg">कृपया वैध १० अंकी मोबाईल नंबर टाका (६, ७, ८ किंवा ९ ने सुरू होणारा).</div>
 
-        <label for="email">Registered Email (Optional / ईमेल असल्यास):</label>
-        <input type="email" id="email" name="registered_email" placeholder="उदा. rahul@gmail.com">
+        <!-- ३. खरा ईमेल (Fake Emails Blocked) -->
+        <label for="email">Registered Email Address / ईमेल: <span class="req">*</span></label>
+        <input type="email" id="email" required placeholder="उदा. rahulpatil@gmail.com">
+        <div id="errEmail" class="err-msg">अवैध किंवा फेक ईमेल! कृपया खरा ईमेल टाका.</div>
 
-        <label for="reason">Reason for Account Deletion (Optional):</label>
-        <textarea id="reason" name="reason" rows="2" placeholder="उदा. परीक्षा संपली / ॲपची आता गरज नाही..."></textarea>
+        <!-- ४. कारण अनिवार्य -->
+        <label for="reason">Reason for Deletion / खाते बंद करण्याचे कारण: <span class="req">*</span></label>
+        <textarea id="reason" rows="3" required placeholder="खाते का हटवायचे आहे त्याचे कारण येथे सविस्तर लिहा..." minlength="10"></textarea>
+        <div id="errReason" class="err-msg">कृपया खाते हटवण्याचे किमान १० अक्षरांचे कारण लिहा.</div>
 
-        <button type="submit" class="btn-submit">⚠️ Submit Permanent Deletion Request</button>
+        <button type="submit" id="btnSubmit" class="btn-submit">
+            <span>⚠️ Submit Permanent Deletion Request</span>
+        </button>
     </form>
 
     <div class="footer-note">
-        * Requests are verified and securely purged from our servers within 48 to 72 business hours in accordance with Google Play User Data Policies.
+        * Requests are verified and securely purged within 48 to 72 business hours in accordance with Google Play User Data Policy.
     </div>
 
     <a href="index.html" class="back-link">← Return to MahaExam Official Portal</a>
 </div>
+
+<script>
+    const form = document.getElementById('deleteAccountForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const successCard = document.getElementById('successCard');
+
+    // 🚫 फेक ईमेल डोमेन्सची यादी (ज्यांना ब्लॉक करायचे आहे):
+    const BLOCKED_DOMAINS = [
+        'tempmail.com', '10minutemail.com', 'mailinator.com', 'guerrillamail.com',
+        'throwawaymail.com', 'fake.com', 'test.com', 'example.com', 'dummy.com',
+        'spam4.me', 'sharklasers.com', 'yopmail.com'
+    ];
+
+    // 🚫 फेक मोबाईल नंबर्सची यादी:
+    const FAKE_NUMBERS = [
+        '1234567890', '0123456789', '9876543210', '0000000000',
+        '1111111111', '2222222222', '3333333333', '4444444444',
+        '5555555555', '6666666666', '7777777777', '8888888888', '9999999999'
+    ];
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // व्हॅल्यूज गोळा करणे:
+        const name = document.getElementById('fullName').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const reason = document.getElementById('reason').value.trim();
+
+        let isValid = true;
+
+        // १. नाव तपासणे:
+        if (name.length < 3) {
+            document.getElementById('errName').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errName').style.display = 'none';
+        }
+
+        // २. मोबाईल नंबर तपासणे (भारतीय १० अंकी, ६-९ ने सुरू):
+        const mobileRegex = /^[6-9]\d{9}$/;
+        if (!mobileRegex.test(mobile) || FAKE_NUMBERS.includes(mobile)) {
+            document.getElementById('errMobile').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errMobile').style.display = 'none';
+        }
+
+        // ३. ईमेल तपासणे व फेक डोमेन अडवणे:
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailDomain = email.split('@');
+
+        if (!emailRegex.test(email) || (emailDomain && BLOCKED_DOMAINS.includes(emailDomain))) {
+            document.getElementById('errEmail').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errEmail').style.display = 'none';
+        }
+
+        // ४. कारण तपासणे:
+        if (reason.length < 10) {
+            document.getElementById('errReason').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errReason').style.display = 'none';
+        }
+
+        if (!isValid) return;
+
+        // सर्व माहिती खरी असल्यास सबमिट करणे:
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = "<span>⏳ सबमिट करत आहे...</span>";
+
+        const payload = {
+            candidate_name: name,
+            registered_mobile: mobile,
+            registered_email: email,
+            reason: reason,
+            _subject: "[MahaExam] Urgent: Verified Account Deletion Request",
+            _captcha: "false"
+        };
+
+        fetch("https://formsubmit.co/ajax/contactworld999@gmail.com", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            form.style.display = 'none';
+            successCard.style.display = 'block';
+        })
+        .catch(err => {
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = "<span>⚠️ Submit Permanent Deletion Request</span>";
+            alert("अडचण आली, कृपया पुन्हा प्रयत्न करा!");
+        });
+    });
+</script>
 
 </body>
 </html>
