@@ -1,87 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MahaExam — Support &amp; Helpdesk</title>
+    <title>MahaExam Student Support</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0F172A; color: #F8FAFC; line-height: 1.6; padding: 30px 15px; margin: 0; }
-        .container { max-width: 650px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 25px; }
-        h1 { color: #FFFFFF; font-size: 26px; margin-bottom: 5px; }
-        .card { background: #1E293B; border: 1px solid #334155; padding: 25px; border-radius: 14px; margin-bottom: 22px; }
-        h2 { color: #38BDF8; font-size: 18px; margin-bottom: 12px; }
-        p { color: #94A3B8; font-size: 13.5px; margin-bottom: 15px; }
-        label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
-        input, textarea, select { width: 100%; box-sizing: border-box; background: #0B132B; border: 1px solid #334155; border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; }
-        .btn-submit { background: #2563EB; color: #fff; border: none; padding: 13px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
-        .btn-submit:hover { background: #1D4ED8; }
-        .contact-info { background: #0B132B; padding: 14px; border-radius: 8px; font-size: 13px; color: #CBD5E1; margin-bottom: 15px; border-left: 3px solid #2563EB; }
-        .ceo-box { border-left: 3px solid #F59E0B; background: #0B132B; padding: 15px; border-radius: 8px; font-size: 13px; color: #CBD5E1; }
-        .links { text-align: center; margin-top: 25px; }
-        .links a { color: #38BDF8; text-decoration: none; margin: 0 10px; font-size: 13px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        body {
+            background-color: #0F172A;
+            color: #F8FAFC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            max-width: 480px;
+            width: 100%;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #FFFFFF;
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .header p {
+            color: #38BDF8;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .contact-box {
+            background: #0B132B;
+            border: 1px solid #1E293B;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #94A3B8;
+            line-height: 1.6;
+        }
+        .contact-box strong {
+            color: #E2E8F0;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            color: #CBD5E1;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            background: #0F172A;
+            border: 1px solid #334155;
+            color: #FFFFFF;
+            font-size: 13px;
+            outline: none;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #38BDF8;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            background: #2563EB;
+            color: #FFFFFF;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        button:hover {
+            background: #1D4ED8;
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 🎉 सबमिट झाल्यावर दिसणारे सुंदर सक्सेस कार्ड */
+        #successCard {
+            display: none;
+            background: #064E3B;
+            border: 1px solid #059669;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            color: #ECFDF5;
+        }
+        #successCard h2 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #34D399;
+            margin-bottom: 8px;
+        }
+        #successCard p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #A7F3D0;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
+    <div class="header">
         <h1>महा एक्झाम (MahaExam)</h1>
-        <p>Student Support &amp; Help Center</p>
-    </header>
+        <p>Student Support & Help Center</p>
+    </div>
 
-    <!-- 🎧 1. PRIMARY: STUDENT SUPPORT TEAM (contactworld999@gmail.com) -->
-    <div class="card">
-        <h2>🎧 Student Support Team</h2>
-        <div class="contact-info">
-            📧 <strong>Support Email:</strong> contactworld999@gmail.com<br>
-            📱 <strong>WhatsApp Helpline:</strong> +91 9657698362<br>
-            ⏰ <strong>Working Hours:</strong> Mon – Sat: 9:00 AM to 8:00 PM
+    <div class="contact-box">
+        🎧 <strong>Support Email:</strong> contactworld999@gmail.com<br>
+        💬 <strong>WhatsApp Helpline:</strong> +91 9657698362<br>
+        ⏰ <strong>Working Hours:</strong> Mon - Sat: 9:00 AM to 8:00 PM
+    </div>
+
+    <!-- ✅ सबमिट झाल्यावर दिसणारा मेसेज (No Redirect) -->
+    <div id="successCard">
+        <h2>✅ धन्यवाद! विनंती सबमिट झाली!</h2>
+        <p>तुमची अडचण आमच्या सपोर्ट टीमकडे यशस्वीरीत्या नोंदवली गेली आहे. आमची टीम यावर लवकरात लवकर काम करून तुम्हाला संपर्क करेल!</p>
+    </div>
+
+    <!-- 📝 सपोर्ट फॉर्म -->
+    <form id="supportForm">
+        <div class="form-group">
+            <label>Your Name / नाव:</label>
+            <input type="text" id="name" required placeholder="उदा. Rahul Patil">
         </div>
 
-        <p>कोणत्याही तांत्रिक अडचणी, टेस्ट्सबाबत शंका किंवा VIP पास मदतीसाठी सपोर्ट टीमला मेसेज पाठवा:</p>
+        <div class="form-group">
+            <label>Mobile Number / मोबाईल नंबर:</label>
+            <input type="tel" id="phone" required placeholder="उदा. 9657698362">
+        </div>
 
-        <!-- फॉर्म थेट contactworld999@gmail.com कडे जाईल -->
-        <form action="https://formsubmit.co/contactworld999@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="[MahaExam] New Support Ticket">
-            <input type="hidden" name="_captcha" value="false">
-
-            <label for="name">Your Name / नाव:</label>
-            <input type="text" id="name" name="name" placeholder="उदा. Rahul Patil" required>
-
-            <label for="phone">Mobile Number / मोबाईल नंबर:</label>
-            <input type="tel" id="phone" name="phone" placeholder="उदा. 9657698362" required>
-
-            <label for="topic">Query Type / विषय:</label>
-            <select id="topic" name="topic">
-                <option value="VIP Pass">VIP Pass / Payment Issue</option>
-                <option value="Mock Test">Mock Test / Questions Feedback</option>
-                <option value="General">General Inquiry</option>
+        <div class="form-group">
+            <label>Query Type / विषय:</label>
+            <select id="queryType">
+                <option value="VIP Pass / Payment Issue">VIP Pass / Payment Issue</option>
+                <option value="PYQ Test Papers Issue">PYQ Test Papers Issue</option>
+                <option value="Visual Notes Issue">Visual Notes Issue</option>
+                <option value="Other Issue">Other Issue (इतर अडचण)</option>
             </select>
-
-            <label for="msg">Describe Your Issue / अडचण येथे सविस्तर लिहा:</label>
-            <textarea id="msg" name="message" rows="4" placeholder="तुमची अडचण येथे लिहा..." required></textarea>
-
-            <button type="submit" class="btn-submit">📩 Submit to Support Team</button>
-        </form>
-    </div>
-
-    <!-- 👑 2. SECONDARY: ESCALATE TO CEO (फक्त न सुटलेल्या तक्रारींसाठी) -->
-    <div class="card">
-        <h2 style="color:#F59E0B;">👑 Executive Escalation (CEO Desk)</h2>
-        <p>जर सपोर्ट टीमकडून 48 तासांत प्रतिसाद मिळाला नाही किंवा अत्यंत गंभीर विषय असेल, तरच थेट संस्थापकांशी संपर्क साधा:</p>
-        <div class="ceo-box">
-            📩 <strong>Direct Executive Email:</strong> <a href="mailto:ceo.mahaexam@gmail.com" style="color:#F59E0B; text-decoration:none; font-weight:bold;">ceo.mahaexam@gmail.com</a><br>
-            <span style="font-size:12px; color:#94A3B8;">*कृपया सामान्य मदतीसाठी आधी वरील सपोर्ट टीमला संपर्क करा.</span>
         </div>
-    </div>
 
-    <!-- QUICK LEGAL LINKS -->
-    <div class="links">
-        <a href="privacy.html">🔒 Privacy Policy</a> |
-        <a href="delete-account.html">🗑️ Delete Account</a>
-    </div>
+        <div class="form-group">
+            <label>Describe Your Issue / अडचण येथे सविस्तर लिहा:</label>
+            <textarea id="message" rows="3" required placeholder="तुमची अडचण येथे लिहा..."></textarea>
+        </div>
+
+        <button type="submit" id="btnSubmit">
+            <span>📩 Submit to Support Team</span>
+        </button>
+    </form>
 </div>
+
+<script>
+    const supportForm = document.getElementById('supportForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const successCard = document.getElementById('successCard');
+
+    supportForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // बटण डिसेबल करून लोडिंग दाखवणे:
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = "<span>⏳ पाठवत आहे...</span>";
+
+        const formData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            queryType: document.getElementById('queryType').value,
+            message: document.getElementById('message').value,
+            _captcha: "false"
+        };
+
+        // 🔥 FormSubmit AJAX API (कोणत्याही बाहेरील पानावर न जाता मेसेज पाठवणे):
+        fetch("https://formsubmit.co/ajax/contactworld999@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // फॉर्म लपवून फक्त धन्यवादचा मेसेज दाखवणे:
+            supportForm.style.display = "none";
+            successCard.style.display = "block";
+        })
+        .catch(error => {
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = "<span>📩 Submit to Support Team</span>";
+            alert("मेसेज पाठवताना अडचण आली, कृपया थेट WhatsApp वर संपर्क साधा!");
+        });
+    });
+</script>
 
 </body>
 </html>
