@@ -68,6 +68,7 @@
             margin-bottom: 6px;
             font-weight: 600;
         }
+        .req { color: #EF4444; }
         input, select, textarea {
             width: 100%;
             padding: 12px;
@@ -77,9 +78,17 @@
             color: #FFFFFF;
             font-size: 13px;
             outline: none;
+            transition: border-color 0.2s;
         }
         input:focus, select:focus, textarea:focus {
             border-color: #38BDF8;
+        }
+        .err-msg {
+            color: #F87171;
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
+            font-weight: 600;
         }
         button {
             width: 100%;
@@ -96,6 +105,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            margin-top: 10px;
         }
         button:hover {
             background: #1D4ED8;
@@ -111,7 +121,7 @@
             background: #064E3B;
             border: 1px solid #059669;
             border-radius: 14px;
-            padding: 20px;
+            padding: 22px;
             text-align: center;
             color: #ECFDF5;
         }
@@ -145,23 +155,35 @@
     <!-- ✅ सबमिट झाल्यावर दिसणारा मेसेज (No Redirect) -->
     <div id="successCard">
         <h2>✅ धन्यवाद! विनंती सबमिट झाली!</h2>
-        <p>तुमची अडचण आमच्या सपोर्ट टीमकडे यशस्वीरीत्या नोंदवली गेली आहे. आमची टीम यावर लवकरात लवकर काम करून तुम्हाला संपर्क करेल!</p>
+        <p>तुमची अडचण आमच्या सपोर्ट टीमकडे यशस्वीरीत्या नोंदवली गेली आहे. तुमच्या नोंदणीकृत ईमेलवर आमची टीम लवकरात लवकर संपर्क साधेल!</p>
     </div>
 
     <!-- 📝 सपोर्ट फॉर्म -->
     <form id="supportForm">
+        <!-- १. नाव -->
         <div class="form-group">
-            <label>Your Name / नाव:</label>
-            <input type="text" id="name" required placeholder="उदा. Rahul Patil">
+            <label>Candidate Name / पूर्ण नाव: <span class="req">*</span></label>
+            <input type="text" id="name" required placeholder="उदा. Rahul Patil" minlength="3">
+            <div id="errName" class="err-msg">कृपया तुमचे पूर्ण नाव टाका.</div>
         </div>
 
+        <!-- २. नोंदणीकृत Google Email (No Fake Emails) -->
         <div class="form-group">
-            <label>Mobile Number / मोबाईल नंबर:</label>
-            <input type="tel" id="phone" required placeholder="उदा. 9657698362">
+            <label>Registered Google Login Email / लॉगिन ईमेल: <span class="req">*</span></label>
+            <input type="email" id="email" required placeholder="उदा. rahul@gmail.com">
+            <div id="errEmail" class="err-msg">कृपया ॲपमधील खरा Google ईमेल टाका (फेक ईमेल चालणार नाही).</div>
         </div>
 
+        <!-- ३. १० अंकी खरा मोबाईल नंबर (No Fake Mobile) -->
         <div class="form-group">
-            <label>Query Type / विषय:</label>
+            <label>WhatsApp / Mobile Number / मोबाईल नंबर: <span class="req">*</span></label>
+            <input type="tel" id="phone" required placeholder="उदा. 9657698362" maxlength="10">
+            <div id="errPhone" class="err-msg">कृपया वैध १० अंकी मोबाईल नंबर टाका (६, ७, ८ किंवा ९ ने सुरू होणारा).</div>
+        </div>
+
+        <!-- ४. विषय -->
+        <div class="form-group">
+            <label>Query Type / विषय: <span class="req">*</span></label>
             <select id="queryType">
                 <option value="VIP Pass / Payment Issue">VIP Pass / Payment Issue</option>
                 <option value="PYQ Test Papers Issue">PYQ Test Papers Issue</option>
@@ -170,9 +192,11 @@
             </select>
         </div>
 
+        <!-- ५. सविस्तर अडचण -->
         <div class="form-group">
-            <label>Describe Your Issue / अडचण येथे सविस्तर लिहा:</label>
-            <textarea id="message" rows="3" required placeholder="तुमची अडचण येथे लिहा..."></textarea>
+            <label>Describe Your Issue / अडचण येथे सविस्तर लिहा: <span class="req">*</span></label>
+            <textarea id="message" rows="3" required placeholder="तुमची अडचण येथे सविस्तर लिहा..." minlength="10"></textarea>
+            <div id="errMessage" class="err-msg">कृपया किमान १० अक्षरांचे सविस्तर वर्णन लिहा.</div>
         </div>
 
         <button type="submit" id="btnSubmit">
@@ -186,22 +210,95 @@
     const btnSubmit = document.getElementById('btnSubmit');
     const successCard = document.getElementById('successCard');
 
+    // 🌟 URL मधून विद्यार्थ्याचा Google Email, नाव व Student ID आपोआप भरणे:
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pEmail = urlParams.get('email');
+        const pName = urlParams.get('name');
+        const pPhone = urlParams.get('phone');
+
+        if (pEmail) document.getElementById('email').value = decodeURIComponent(pEmail);
+        if (pName) document.getElementById('name').value = decodeURIComponent(pName);
+        if (pPhone) document.getElementById('phone').value = decodeURIComponent(pPhone);
+    });
+
+    // 🚫 फेक ईमेल डोमेन्स
+    const BLOCKED_DOMAINS = [
+        'tempmail.com', '10minutemail.com', 'mailinator.com', 'guerrillamail.com',
+        'throwawaymail.com', 'fake.com', 'test.com', 'example.com', 'dummy.com'
+    ];
+
+    // 🚫 फेक नंबर्स
+    const FAKE_NUMBERS = [
+        '1234567890', '0123456789', '9876543210', '0000000000',
+        '1111111111', '2222222222', '3333333333', '4444444444',
+        '5555555555', '6666666666', '7777777777', '8888888888', '9999999999'
+    ];
+
     supportForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // बटण डिसेबल करून लोडिंग दाखवणे:
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const phone = document.getElementById('phone').value.trim();
+        const queryType = document.getElementById('queryType').value;
+        const message = document.getElementById('message').value.trim();
+
+        let isValid = true;
+
+        // १. नाव व्हॅलिडेशन:
+        if (name.length < 3) {
+            document.getElementById('errName').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errName').style.display = 'none';
+        }
+
+        // २. ईमेल व्हॅलिडेशन (फेक डोमेन अडवणे):
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailDomain = email.split('@');
+        if (!emailRegex.test(email) || (emailDomain && BLOCKED_DOMAINS.includes(emailDomain))) {
+            document.getElementById('errEmail').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errEmail').style.display = 'none';
+        }
+
+        // ३. मोबाईल नंबर व्हॅलिडेशन (१० अंकी, ६-९ ने सुरू):
+        const phoneRegex = /^[6-9]\d{9}$/;
+        if (!phoneRegex.test(phone) || FAKE_NUMBERS.includes(phone)) {
+            document.getElementById('errPhone').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errPhone').style.display = 'none';
+        }
+
+        // ४. मेसेज व्हॅलिडेशन:
+        if (message.length < 10) {
+            document.getElementById('errMessage').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('errMessage').style.display = 'none';
+        }
+
+        if (!isValid) return;
+
+        // बटण लोडिंग:
         btnSubmit.disabled = true;
         btnSubmit.innerHTML = "<span>⏳ पाठवत आहे...</span>";
 
         const formData = {
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            queryType: document.getElementById('queryType').value,
-            message: document.getElementById('message').value,
+            name: name,
+            email: email,
+            phone: phone,
+            queryType: queryType,
+            message: message,
+            _replyto: email, // 🔥 ॲडमिनने Reply करताच थेट विद्यार्थ्याच्या ईमेलवर उत्तर जाईल!
+            _subject: `[MahaExam Support] New Query from ${name} (${queryType})`,
             _captcha: "false"
         };
 
-        // 🔥 FormSubmit AJAX API (कोणत्याही बाहेरील पानावर न जाता मेसेज पाठवणे):
+        // FormSubmit AJAX API:
         fetch("https://formsubmit.co/ajax/contactworld999@gmail.com", {
             method: "POST",
             headers: { 
@@ -212,7 +309,6 @@
         })
         .then(response => response.json())
         .then(data => {
-            // फॉर्म लपवून फक्त धन्यवादचा मेसेज दाखवणे:
             supportForm.style.display = "none";
             successCard.style.display = "block";
         })
